@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>redis过期数据存储方式以及删除方式 | cuicui</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="当你通过expire或者pexpire命令，给某个键设置了过期时间，那么它在服务器是怎么存储的呢？到达过期时间后，又是怎么删除的呢？">
+<meta name="keywords" content="redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis过期数据存储方式以及删除方式">
+<meta property="og:url" content="http://yoursite.com/2017/07/04/REDIS/redis过期数据存储方式以及删除方式/index.html">
+<meta property="og:site_name" content="cuicui">
+<meta property="og:description" content="当你通过expire或者pexpire命令，给某个键设置了过期时间，那么它在服务器是怎么存储的呢？到达过期时间后，又是怎么删除的呢？">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://1e-gallery.redisbook.com/_images/graphviz-a98e948b7df5bec0a324d87ba3f12bb965e8bd00.png">
+<meta property="og:image" content="http://1e-gallery.redisbook.com/_images/graphviz-bea3896f8f78c1121ed10c3963085383f28e69df.png">
+<meta property="og:image" content="http://1e-gallery.redisbook.com/_images/graphviz-763e7edad215846a6cf6a99999eeace75f99d5de.png">
+<meta property="og:image" content="http://1e-gallery.redisbook.com/_images/graphviz-9839089a12e44ba12c2237a4c250bfe0e004e15b.png">
+<meta property="og:updated_time" content="2018-03-31T18:01:59.558Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redis过期数据存储方式以及删除方式">
+<meta name="twitter:description" content="当你通过expire或者pexpire命令，给某个键设置了过期时间，那么它在服务器是怎么存储的呢？到达过期时间后，又是怎么删除的呢？">
+<meta name="twitter:image" content="http://1e-gallery.redisbook.com/_images/graphviz-a98e948b7df5bec0a324d87ba3f12bb965e8bd00.png">
+  
+    <link rel="alternative" href="/atom.xml" title="cuicui" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/avatar.png" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">cuicui</a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">PHP</a></li>
+                        
+                            <li><a  href="/categories/MYSQL/">MYSQL</a></li>
+                        
+                            <li><a  href="/categories/REDIS">REDIS</a></li>
+                        
+                            <li><a  href="/categories/架构">架构</a></li>
+                        
+                            <li><a  href="/categories/OTHERS">OTHERS</a></li>
+                        
+                            <li><a  href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="/xxxxx" title="github">github</a>
+                            
+                                <a class="fl weibo"  target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/blog/" style="font-size: 12.86px;">blog</a> <a href="/tags/cgi/" style="font-size: 10px;">cgi</a> <a href="/tags/charles/" style="font-size: 10px;">charles</a> <a href="/tags/composer/" style="font-size: 11.43px;">composer</a> <a href="/tags/fastcgi/" style="font-size: 10px;">fastcgi</a> <a href="/tags/fastcgi-finish-request/" style="font-size: 10px;">fastcgi_finish_request</a> <a href="/tags/git/" style="font-size: 14.29px;">git</a> <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/linux/" style="font-size: 17.14px;">linux</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/monolog/" style="font-size: 10px;">monolog</a> <a href="/tags/mq/" style="font-size: 12.86px;">mq</a> <a href="/tags/mysql/" style="font-size: 11.43px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-cgi/" style="font-size: 10px;">php-cgi</a> <a href="/tags/php-fpm/" style="font-size: 10px;">php-fpm</a> <a href="/tags/redis/" style="font-size: 18.57px;">redis</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/systemctl/" style="font-size: 10px;">systemctl</a> <a href="/tags/tools/" style="font-size: 12.86px;">tools</a> <a href="/tags/分布式/" style="font-size: 10px;">分布式</a> <a href="/tags/架构/" style="font-size: 15.71px;">架构</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://blog.csdn.net/baidu_21483933">csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://segmentfault.com/blog/maocg_web">segmentfault</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/eb37ef89c746/latest_articles">简书</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱动漫,爱游戏,爱编程,爱运动,爱的太多了!</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">cuicui</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/avatar.png" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">cuicui</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">PHP</a></li>
+                
+                    <li><a href="/categories/MYSQL/">MYSQL</a></li>
+                
+                    <li><a href="/categories/REDIS">REDIS</a></li>
+                
+                    <li><a href="/categories/架构">架构</a></li>
+                
+                    <li><a href="/categories/OTHERS">OTHERS</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="/xxxxx" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-REDIS/redis过期数据存储方式以及删除方式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2017/07/04/REDIS/redis过期数据存储方式以及删除方式/" class="article-date">
+      <time datetime="2017-07-04T11:32:48.000Z" itemprop="datePublished">2017-07-04</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      redis过期数据存储方式以及删除方式
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/REDIS/">REDIS</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>当你通过expire或者pexpire命令，给某个键设置了过期时间，那么它在服务器是怎么存储的呢？到达过期时间后，又是怎么删除的呢？<br><a id="more"></a></p>
+<h2 id="一、存储方式"><a href="#一、存储方式" class="headerlink" title="一、存储方式"></a>一、存储方式</h2><p>比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; EXPIRE book 5</span><br><span class="line">(integer) 1</span><br></pre></td></tr></table></figure></p>
+<p>首先我们知道，redis维护了一个存储了所有的设置的key-&gt;value的字典。但是其实不止一个字典的。<br><strong>redis有一个包含过期事件的字典</strong><br>每当有设置过期事件的key后，redis会用当前的事件，加上过期的时间段，得到过期的标准时间，存储在expires字典中。<br><img src="http://1e-gallery.redisbook.com/_images/graphviz-a98e948b7df5bec0a324d87ba3f12bb965e8bd00.png" alt=""><br>从上图可以看出来，比如你给book设置过期事件，那么expires字典的key也为book，值是当前的时间+5s后的unix time。</p>
+<h2 id="二、删除方式"><a href="#二、删除方式" class="headerlink" title="二、删除方式"></a>二、删除方式</h2><p>如果一个键已经过期了，那么redis的如果删除它呢？redis采用了2种删除方式;</p>
+<h4 id="2-1、惰性删除"><a href="#2-1、惰性删除" class="headerlink" title="2.1、惰性删除"></a>2.1、惰性删除</h4><p>惰性删除的原理理是：放任键过期不管，但是每次从键空间获取键的时候，如果该键存在，再去expires字典判断这个键是不是超时。如果超时则返回空，并删除该键。过程如下：<br><img src="http://1e-gallery.redisbook.com/_images/graphviz-bea3896f8f78c1121ed10c3963085383f28e69df.png" alt=""></p>
+<ul>
+<li>优点：惰性删除对cpu是友好的。保证在键必须删除的时候才会消耗cpu</li>
+<li>缺点：惰性删除对内存特别不友好。虽然键过期，但是没有使用则一直存在内存中。</li>
+</ul>
+<h4 id="2-2、定期删除"><a href="#2-2、定期删除" class="headerlink" title="2.2、定期删除"></a>2.2、定期删除</h4><p>redis架构中的时间事件，每隔一段时间后，在规定的时间内，会主动去检测expires字典中包含的key进行检测，发现过期的则删除。在redis的源码redis.c/activeExpireCycle函数中。<br>下面分别是这个函数的源码与伪代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br></pre></td><td class="code"><pre><span class="line">void  activeExpireCycle(int type) &#123;</span><br><span class="line">    // 静态变量，用来累积函数连续执行时的数据</span><br><span class="line">    static  unsigned  int current_db =  0; /* Last DB tested. */</span><br><span class="line">    static  int timelimit_exit =  0; /* Time limit hit in previous call? */</span><br><span class="line">    static  long  long last_fast_cycle =  0; /* When last fast cycle ran. */</span><br><span class="line"></span><br><span class="line">    unsigned  int j, iteration =  0;</span><br><span class="line">    // 默认每次处理的数据库数量</span><br><span class="line">    unsigned  int dbs_per_call = REDIS_DBCRON_DBS_PER_CALL;</span><br><span class="line">    // 函数开始的时间</span><br><span class="line">    long  long start =  ustime(), timelimit;</span><br><span class="line"></span><br><span class="line">    // 快速模式</span><br><span class="line">    if (type == ACTIVE_EXPIRE_CYCLE_FAST) &#123;</span><br><span class="line">        // 如果上次函数没有触发 timelimit_exit ，那么不执行处理</span><br><span class="line">        if (!timelimit_exit) return;</span><br><span class="line">        // 如果距离上次执行未够一定时间，那么不执行处理</span><br><span class="line">        if (start &lt; last_fast_cycle + ACTIVE_EXPIRE_CYCLE_FAST_DURATION*2) return;</span><br><span class="line">        // 运行到这里，说明执行快速处理，记录当前时间</span><br><span class="line">        last_fast_cycle = start;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /*</span><br><span class="line">    * 一般情况下，函数只处理 REDIS_DBCRON_DBS_PER_CALL 个数据库，</span><br><span class="line">    * 除非：</span><br><span class="line">    * 当前数据库的数量小于 REDIS_DBCRON_DBS_PER_CALL</span><br><span class="line">    * 如果上次处理遇到了时间上限，那么这次需要对所有数据库进行扫描，</span><br><span class="line">    * 这可以避免过多的过期键占用空间</span><br><span class="line">    */</span><br><span class="line">    if (dbs_per_call &gt; server.dbnum  || timelimit_exit)</span><br><span class="line">    dbs_per_call = server.dbnum;</span><br><span class="line"></span><br><span class="line">    // 函数处理的微秒时间上限</span><br><span class="line">    // ACTIVE_EXPIRE_CYCLE_SLOW_TIME_PERC 默认为 25 ，也即是 25 % 的 CPU 时间</span><br><span class="line">    timelimit =  1000000*ACTIVE_EXPIRE_CYCLE_SLOW_TIME_PERC/server.hz/100;</span><br><span class="line">    timelimit_exit =  0;</span><br><span class="line">    if (timelimit &lt;=  0) timelimit =  1;</span><br><span class="line"></span><br><span class="line">    // 如果是运行在快速模式之下</span><br><span class="line">    // 那么最多只能运行 FAST_DURATION 微秒</span><br><span class="line">    // 默认值为 1000 （微秒）</span><br><span class="line">    if (type == ACTIVE_EXPIRE_CYCLE_FAST)</span><br><span class="line">    timelimit = ACTIVE_EXPIRE_CYCLE_FAST_DURATION; /* in microseconds. */</span><br><span class="line"></span><br><span class="line">    // 遍历数据库</span><br><span class="line">    for (j =  0; j &lt; dbs_per_call; j++) &#123;</span><br><span class="line">        int expired;</span><br><span class="line">        // 指向要处理的数据库</span><br><span class="line">        redisDb *db = server.db+(current_db % server.dbnum);</span><br><span class="line"></span><br><span class="line">        // 为 DB 计数器加一，如果进入 do 循环之后因为超时而跳出</span><br><span class="line">        // 那么下次会直接从下个 DB 开始处理</span><br><span class="line">        current_db++;</span><br><span class="line"></span><br><span class="line">        do &#123;</span><br><span class="line">            unsigned  long num, slots;</span><br><span class="line">            long  long now, ttl_sum;</span><br><span class="line">            int ttl_samples;</span><br><span class="line"></span><br><span class="line">            // 获取数据库中带过期时间的键的数量</span><br><span class="line">            // 如果该数量为 0 ，直接跳过这个数据库</span><br><span class="line">            if ((num =  dictSize(db-&gt;expires)) ==  0) &#123;</span><br><span class="line">                db-&gt;avg_ttl  =  0;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            // 获取数据库中键值对的数量</span><br><span class="line">            slots =  dictSlots(db-&gt;expires);</span><br><span class="line">            // 当前时间</span><br><span class="line">            now =  mstime();</span><br><span class="line"></span><br><span class="line">            // 这个数据库的使用率低于 1% ，扫描起来太费力了（大部分都会 MISS）</span><br><span class="line">            // 跳过，等待字典收缩程序运行</span><br><span class="line">            if (num &amp;&amp; slots &gt; DICT_HT_INITIAL_SIZE &amp;&amp;</span><br><span class="line">            (num*100/slots &lt;  1)) break;</span><br><span class="line"></span><br><span class="line">            // 已处理过期键计数器</span><br><span class="line">            expired =  0;</span><br><span class="line">            // 键的总 TTL 计数器</span><br><span class="line">            ttl_sum =  0;</span><br><span class="line">            // 总共处理的键计数器</span><br><span class="line">            ttl_samples =  0;</span><br><span class="line"></span><br><span class="line">            // 每次最多只能检查 LOOKUPS_PER_LOOP 个键</span><br><span class="line">            if (num &gt; ACTIVE_EXPIRE_CYCLE_LOOKUPS_PER_LOOP)</span><br><span class="line">            num = ACTIVE_EXPIRE_CYCLE_LOOKUPS_PER_LOOP;</span><br><span class="line"></span><br><span class="line">            // 开始遍历数据库</span><br><span class="line">            while (num--) &#123;</span><br><span class="line">                dictEntry *de;</span><br><span class="line">                long  long ttl;</span><br><span class="line"></span><br><span class="line">                // 从 expires 中随机取出一个带过期时间的键</span><br><span class="line">                if ((de =  dictGetRandomKey(db-&gt;expires)) ==  NULL) break;</span><br><span class="line">                // 计算 TTL</span><br><span class="line">                ttl =  dictGetSignedIntegerVal(de)-now;</span><br><span class="line">                // 如果键已经过期，那么删除它，并将 expired 计数器增一</span><br><span class="line">                if (activeExpireCycleTryExpire(db,de,now)) expired++;</span><br><span class="line">                if (ttl &lt;  0) ttl =  0;</span><br><span class="line">                // 累积键的 TTL</span><br><span class="line">                ttl_sum += ttl;</span><br><span class="line">                // 累积处理键的个数</span><br><span class="line">                ttl_samples++;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            // 为这个数据库更新平均 TTL 统计数据</span><br><span class="line">            if (ttl_samples) &#123;</span><br><span class="line">                // 计算当前平均值</span><br><span class="line">                long  long avg_ttl = ttl_sum/ttl_samples;</span><br><span class="line">                // 如果这是第一次设置数据库平均 TTL ，那么进行初始化</span><br><span class="line">                if (db-&gt;avg_ttl  ==  0) db-&gt;avg_ttl  = avg_ttl;</span><br><span class="line">                /* Smooth the value averaging with the previous one. */</span><br><span class="line">                // 取数据库的上次平均 TTL 和今次平均 TTL 的平均值</span><br><span class="line">                db-&gt;avg_ttl  = (db-&gt;avg_ttl+avg_ttl)/2;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            // 我们不能用太长时间处理过期键，</span><br><span class="line">            // 所以这个函数执行一定时间之后就要返回</span><br><span class="line"></span><br><span class="line">            // 更新遍历次数</span><br><span class="line">            iteration++;</span><br><span class="line"></span><br><span class="line">            // 每遍历 16 次执行一次</span><br><span class="line">            if ((iteration &amp;  0xf) ==  0  &amp;&amp;  /* check once every 16 iterations. */</span><br><span class="line">            (ustime()-start) &gt; timelimit)</span><br><span class="line">            &#123;</span><br><span class="line">                // 如果遍历次数正好是 16 的倍数</span><br><span class="line">                // 并且遍历的时间超过了 timelimit</span><br><span class="line">                // 那么断开 timelimit_exit</span><br><span class="line">                timelimit_exit =  1;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            // 已经超时了，返回</span><br><span class="line">            if (timelimit_exit) return;</span><br><span class="line"></span><br><span class="line">            // 如果已删除的过期键占当前总数据库带过期时间的键数量的 25 %</span><br><span class="line">            // 那么不再遍历</span><br><span class="line">        &#125; while (expired &gt; ACTIVE_EXPIRE_CYCLE_LOOKUPS_PER_LOOP/4);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>伪代码是：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"># 默认每次检测的数据库数量为16</span><br><span class="line">DEFAULT_DB_NUMBERS = 16</span><br><span class="line"># 默认每次检测的键的数量最大为20</span><br><span class="line">DEFAULT_KEY_NUMBERS = 20</span><br><span class="line"># 全局变量，记录当前检测的进度</span><br><span class="line">current_db = 0</span><br><span class="line">def activeExpireCycle():</span><br><span class="line">    # 初始化要检测的数据库数量</span><br><span class="line">    # 如果服务器的数据库数量小于16，则以服务器的为准</span><br><span class="line">    if server.dbnumbers &lt; DEFAULT_DB_NUMBERS:</span><br><span class="line">        db_numbers = server.dbnumbers</span><br><span class="line">    else</span><br><span class="line">        db_numbers = DEFAULT_DB_NUMBERS</span><br><span class="line">        </span><br><span class="line">    # 遍历每次数据库</span><br><span class="line">    for i in range(db_numbers):</span><br><span class="line">        # 如果current_db的值等于服务器的数量，代表已经遍历全，则重新开始</span><br><span class="line">        if current_db = db_numbers:</span><br><span class="line">            current_db = 0</span><br><span class="line">        </span><br><span class="line">        # 获取当前要处理的数据库</span><br><span class="line">        redisDb = server.db[current_db]</span><br><span class="line">        </span><br><span class="line">        # 将数据库索引+1，指向下一个数据库</span><br><span class="line">        current_db++</span><br><span class="line">        </span><br><span class="line">        do</span><br><span class="line">            # 检测数据库中的键</span><br><span class="line">            for j in range(DEFAULT_KEY_NUMBERS):</span><br><span class="line">                # 如果数据库中没有过期键则跳过这个库</span><br><span class="line">                if redisDb.expires.size() == 0:break</span><br><span class="line">            </span><br><span class="line">                # 随机获取一个带有过期事件的键</span><br><span class="line">                key_with_ttl = redisDb.expires.get_random_key()</span><br><span class="line">            </span><br><span class="line">                # 检测键是不是过期了，如果过期则删除</span><br><span class="line">                if is_expired(key_with_ttl):</span><br><span class="line">                    delete_key(key_with_ttl)</span><br><span class="line">            # 已达到时间上限，则停止处理</span><br><span class="line">            if reach_time_limit(): retrun</span><br><span class="line">        while expired&gt;ACTIVE_EXPIRE_CYCLE_LOOKUPS_PER_LOOP/4</span><br></pre></td></tr></table></figure></p>
+<p>对activeExpireCycle进行总结：</p>
+<ul>
+<li>redis默认1s调用10次，这个是redis的配置中的hz选项。hz默认是10，代表1s调用10次，每100ms调用一次。</li>
+<li>hz不能太大，太大的话，cpu会花大量的时间消耗在判断过期的key上，对cpu不友好。但是如果你的redis过期数据过多，可以适当调大。</li>
+<li>hz不能太小，因为太小的话，一旦过期的key太多可能会过滤不完。</li>
+<li>redis执行定期删除函数，必须在一定时间内，超过该时间就return。事件定义为<code>timelimit =  1000000*ACTIVE_EXPIRE_CYCLE_SLOW_TIME_PERC/server.hz/100</code> 可以看出该时间与hz成反比，hz默认10，timelimit就为25ms；hz修改为100，那么timelimit就为2.5ms。</li>
+<li>抽取20个数据进行判断删除为一个轮训，每经过16个轮训才会去判断一次时间是不是超时。</li>
+<li>如果一个数据库，使用率低于 1%，则不去进行定期删除操作。</li>
+<li>如果对一个数据库，这次删除操作，已经删除了25%的过期key，那么就跳过这个库。</li>
+</ul>
+<h2 id="三、redis主从删除过期key方式"><a href="#三、redis主从删除过期key方式" class="headerlink" title="三、redis主从删除过期key方式"></a>三、redis主从删除过期key方式</h2><p>当redis主从模型下，从服务器的删除过期key的动作是由主服务器控制的。</p>
+<ul>
+<li><p>1、主服务器在惰性删除、客户端主动删除、定期删除一个key的时候，会向从服务器发送一个del的命令，告诉从服务器需要删除这个key。<br><img src="http://1e-gallery.redisbook.com/_images/graphviz-763e7edad215846a6cf6a99999eeace75f99d5de.png" alt=""></p>
+</li>
+<li><p>2、从服务器在执行客户端读取key的时候，如果该key已经过期，也不会将该key删除，而是返回一个null<br><img src="http://1e-gallery.redisbook.com/_images/graphviz-9839089a12e44ba12c2237a4c250bfe0e004e15b.png" alt=""></p>
+</li>
+<li><p>3、从服务器只有在接收到主服务器的del命令才会将一个key进行删除。</p>
+</li>
+</ul>
+<h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><ul>
+<li>1、expires字典的key指向数据库中的某个key，而值记录了数据库中该key的过期时间，过期时间是一个以毫秒为单位的unix时间戳；</li>
+<li>2、redis使用惰性删除和定期删除两种策略来删除过期的key；惰性删除只会在碰到过期key才会删除；定期删除则每隔一段时间主动查找并删除过期键；</li>
+<li>3、当主服务器删除一个过期key后，会向所有的从服务器发送一条del命令，显式的删除过期key；</li>
+<li>4、从服务器即使发现过期key也不会自作主张删除它，而是等待主服务器发送del命令，这种统一、中心化的过期key删除策略可以保证主从服务器的数据一致性。</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2017/07/04/REDIS/redis过期数据存储方式以及删除方式/">redis过期数据存储方式以及删除方式</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 cuicui 的个人博客">cuicui</a></p>
+        <p><span>发布时间:</span>2017年07月04日 - 19时32分</p>
+        <p><span>最后更新:</span>2018年04月01日 - 02时01分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/07/04/REDIS/redis过期数据存储方式以及删除方式/" title="redis过期数据存储方式以及删除方式">http://yoursite.com/2017/07/04/REDIS/redis过期数据存储方式以及删除方式/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/07/04/REDIS/redis过期数据存储方式以及删除方式/　　作者: cuicui" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a  href="/2017/07/04/REDIS/redis为什么不适合做消息队列/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          redis为什么不适合做消息队列
+        
+      </div>
+    </a>
+  
+  
+    <a  href="/2017/07/04/REDIS/redis单进程单线程优点/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"> redis单进程单线程优点</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、存储方式"><span class="toc-number">1.</span> <span class="toc-text">一、存储方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、删除方式"><span class="toc-number">2.</span> <span class="toc-text">二、删除方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1、惰性删除"><span class="toc-number">2.0.1.</span> <span class="toc-text">2.1、惰性删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2、定期删除"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.2、定期删除</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、redis主从删除过期key方式"><span class="toc-number">3.</span> <span class="toc-text">三、redis主从删除过期key方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、总结"><span class="toc-number">4.</span> <span class="toc-text">四、总结</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <section class="changyan" id="comments">
+  <!--<div id="uyan_frame"></div>-->
+  <div id="SOHUCS"></div>
+  <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"></script>
+  <script type="text/javascript">
+    window.changyan.api.config({
+      appid: 'cytxE6y9d',
+      conf: '63c3207b48683b2501a496c7d52a0614'
+    });
+  </script>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/2017/07/04/REDIS/redis为什么不适合做消息队列/" title="上一篇: redis为什么不适合做消息队列">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2017/07/04/REDIS/redis单进程单线程优点/" title="下一篇:  redis单进程单线程优点">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/架构/随机roomId生成/"> 随机roomId生成</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/架构/秒杀系统架构优化思路/"> 秒杀系统架构优化思路</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/架构/如何保证mq消息的幂等性/"> 如何保证mq消息的幂等性</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/PHP/php请求接口异步化 /"> php请求接口异步化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/PHP/php sort排序实现原理/"> php sort排序实现原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/PHP/cgi、fastcgi、php-cgi、php-fpm/">cgi、fastcgi、php-cgi、php-fpm</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/MYSQL/数据库水平切分二三事/"> 数据库水平切分二三事</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/REDIS/基于redis实现分布式锁/"> 基于redis实现分布式锁</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/REDIS/为什么redis内存不宜过大/"> 为什么redis内存不宜过大</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/REDIS/redis集群主库有读流量-/"> redis集群主库为什么要读写流量</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/REDIS/redis超时问题排查/">redis超时问题排查</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/REDIS/redis数据持久化_RDB_AOF/"> redis数据持久化_RDB_AOF</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/04/REDIS/php+redis+lua/">php+redis+lua</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/04/REDIS/redis为什么不适合做消息队列/">redis为什么不适合做消息队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/04/REDIS/redis过期数据存储方式以及删除方式/">redis过期数据存储方式以及删除方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/04/REDIS/redis单进程单线程优点/"> redis单进程单线程优点</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/03/PHP/寻找数组中重复的值/">寻找数组中重复的值</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/OTHERS/外网可见服务/">外网可见服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/28/OTHERS/awk统计求和、求平均、最大值、最小值/">awk统计求和、求平均、最大值、最小值</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/28/OTHERS/systemctl服务管理命令/">systemctl服务管理命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/28/OTHERS/charles代理https/">charles代理https</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/14/REDIS/redis数据结构_字典(hash_map)/">redis数据结构_字典(hash_map)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/14/REDIS/redis数据结构_链表/">redis数据结构_链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/14/REDIS/redis数据结构_跳跃表/">redis数据结构_跳跃表</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/14/REDIS/redis数据结构_字符串/">redis数据结构_字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/14/REDIS/redis数据结构_整数集合/">redis数据结构_整数集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/14/MYSQL/insert与唯一索引问题/">insert与唯一索引问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/14/PHP/composer的安装与使用/">composer的安装与使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/14/PHP/monolog使用/">monolog使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/14/OTHERS/翻墙方法/">翻墙方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/14/OTHERS/hexo在新电脑部署以前环境/">hexo在新电脑部署以前环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/PHP/仿smb实时同步脚本/">仿smb实时同步脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/08/PHP/php数组及遍历/">php数组及遍历</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/01/PHP/php数组的hash算法/">php数组的hash算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/01/PHP/php哈西处理冲突的方法/">php处理哈西冲突的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/29/PHP/缓存总结/">缓存总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/OTHERS/linux中.bash_profile和.bashrc与命令起别名alias/">.bash_profile和.bashrc与linux命令起别名alias</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/22/PHP/xunsearch搜索引擎的安装与使用/">xunsearch搜索引擎的安装与使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/21/PHP/判断是不是整数/">判断是不是整数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/04/OTHERS/linux前后台任务以及相互切换/">linux前后台进程以及相互切换</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/04/OTHERS/linux添加开机启动/">linux添加开机启动</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/23/PHP/判断邮箱帐号/">判断邮箱帐号</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/15/OTHERS/将Linux命令的结果作为下一个命令的参数/">将Linux命令的结果作为下一个命令的参数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/14/PHP/IO复用与多线程、多进程区别/">I/O复用与多线程、多进程区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/PHP/require、include、require_once、include_once区别/">require、include、require_once、include_once区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/OTHERS/samba服务器&nginx配置-》windows映射/">samba服务器&nginx配置->windows映射</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/28/PHP/安装lnmp环境/">安装lnmp环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/03/PHP/会话控制：cookie VS session/">会话控制：cookie VS session</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/03/PHP/http协议/">http协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/02/PHP/输入网址到显示网页过程/">输入网址到显示网页过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/01/PHP/php去除所有标点/">php去除所有标点</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/30/OTHERS/git的安装/">git的安装与基本使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/30/OTHERS/linux文件比较命令/">linux文件比较命令</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2018 cuicui
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

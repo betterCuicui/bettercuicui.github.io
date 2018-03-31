@@ -4,30 +4,1142 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/04/01/MYSQL/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%B0%B4%E5%B9%B3%E5%88%87%E5%88%86%E4%BA%8C%E4%B8%89%E4%BA%8B/</loc>
-    <lastmod>2018-03-31T17:51:24.015Z</lastmod>
+    <loc>http://yoursite.com/2018/04/01/%E6%9E%B6%E6%9E%84/%E9%9A%8F%E6%9C%BAroomId%E7%94%9F%E6%88%90/</loc>
+    <lastmod>2018-03-31T18:25:14.198Z</lastmod>
     <data>
         <display>
-        <title></title>
-        <pubTime>2018-03-31T16:59:54.305Z</pubTime>
+        <title> 随机roomId生成</title>
+        <pubTime>2018-03-31T16:59:54.617Z</pubTime>
         
+        <tag>redis</tag>
+         
+        <tag>mq</tag>
+         
+        <tag>架构</tag>
+         
          
            
+             
+              <breadCrumb title="架构" url="http://yoursite.com/categories/%E6%9E%B6%E6%9E%84/"/>
+          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>http://yoursite.com/2018/04/01/hello-world/</loc>
-    <lastmod>2018-03-31T17:08:28.212Z</lastmod>
+    <loc>http://yoursite.com/2018/04/01/%E6%9E%B6%E6%9E%84/%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF/</loc>
+    <lastmod>2018-03-31T18:24:34.341Z</lastmod>
     <data>
         <display>
-        <title>Hello World</title>
-        <pubTime>2018-03-31T17:08:28.212Z</pubTime>
+        <title> 秒杀系统架构优化思路</title>
+        <pubTime>2018-03-31T16:59:54.611Z</pubTime>
         
+        <tag>架构</tag>
+         
          
            
+             
+              <breadCrumb title="架构" url="http://yoursite.com/categories/%E6%9E%B6%E6%9E%84/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/04/01/%E6%9E%B6%E6%9E%84/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81mq%E6%B6%88%E6%81%AF%E7%9A%84%E5%B9%82%E7%AD%89%E6%80%A7/</loc>
+    <lastmod>2018-03-31T18:23:23.330Z</lastmod>
+    <data>
+        <display>
+        <title> 如何保证mq消息的幂等性</title>
+        <pubTime>2018-03-31T16:59:54.606Z</pubTime>
+        
+        <tag>mq</tag>
+         
+        <tag>架构</tag>
+         
+         
+           
+             
+              <breadCrumb title="架构" url="http://yoursite.com/categories/%E6%9E%B6%E6%9E%84/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/04/01/PHP/php%E8%AF%B7%E6%B1%82%E6%8E%A5%E5%8F%A3%E5%BC%82%E6%AD%A5%E5%8C%96%20/</loc>
+    <lastmod>2018-03-31T18:21:02.319Z</lastmod>
+    <data>
+        <display>
+        <title> php请求接口异步化</title>
+        <pubTime>2018-03-31T16:59:54.600Z</pubTime>
+        
+        <tag>php</tag>
+         
+        <tag>fastcgi_finish_request</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/04/01/PHP/php%20sort%E6%8E%92%E5%BA%8F%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</loc>
+    <lastmod>2018-03-31T18:20:31.449Z</lastmod>
+    <data>
+        <display>
+        <title> php sort排序实现原理</title>
+        <pubTime>2018-03-31T16:59:54.409Z</pubTime>
+        
+        <tag>php</tag>
+         
+        <tag>sort</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/04/01/PHP/cgi%E3%80%81fastcgi%E3%80%81php-cgi%E3%80%81php-fpm/</loc>
+    <lastmod>2018-03-31T18:20:01.478Z</lastmod>
+    <data>
+        <display>
+        <title>cgi、fastcgi、php-cgi、php-fpm</title>
+        <pubTime>2018-03-31T16:59:54.368Z</pubTime>
+        
+        <tag>php</tag>
+         
+        <tag>cgi</tag>
+         
+        <tag>fastcgi</tag>
+         
+        <tag>php-fpm</tag>
+         
+        <tag>php-cgi</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/28/OTHERS/systemctl%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2018-03-31T18:19:22.086Z</lastmod>
+    <data>
+        <display>
+        <title>systemctl服务管理命令</title>
+        <pubTime>2017-06-28T08:38:58.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>systemctl</tag>
+         
+         
+           
+             
+              <breadCrumb title="OTHERS" url="http://yoursite.com/categories/OTHERS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/28/OTHERS/awk%E7%BB%9F%E8%AE%A1%E6%B1%82%E5%92%8C%E3%80%81%E6%B1%82%E5%B9%B3%E5%9D%87%E3%80%81%E6%9C%80%E5%A4%A7%E5%80%BC%E3%80%81%E6%9C%80%E5%B0%8F%E5%80%BC/</loc>
+    <lastmod>2018-03-31T18:18:46.738Z</lastmod>
+    <data>
+        <display>
+        <title>awk统计求和、求平均、最大值、最小值</title>
+        <pubTime>2017-06-28T08:38:58.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>awk</tag>
+         
+         
+           
+             
+              <breadCrumb title="OTHERS" url="http://yoursite.com/categories/OTHERS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/04/01/MYSQL/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%B0%B4%E5%B9%B3%E5%88%87%E5%88%86%E4%BA%8C%E4%B8%89%E4%BA%8B/</loc>
+    <lastmod>2018-03-31T18:18:06.991Z</lastmod>
+    <data>
+        <display>
+        <title> 数据库水平切分二三事</title>
+        <pubTime>2018-03-31T16:59:54.305Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+        <tag>架构</tag>
+         
+         
+           
+             
+              <breadCrumb title="MYSQL" url="http://yoursite.com/categories/MYSQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/04/01/REDIS/%E5%9F%BA%E4%BA%8Eredis%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/</loc>
+    <lastmod>2018-03-31T18:17:33.972Z</lastmod>
+    <data>
+        <display>
+        <title> 基于redis实现分布式锁</title>
+        <pubTime>2018-03-31T16:59:54.299Z</pubTime>
+        
+        <tag>redis</tag>
+         
+        <tag>架构</tag>
+         
+        <tag>分布式</tag>
+         
+         
+           
+             
+              <breadCrumb title="REDIS" url="http://yoursite.com/categories/REDIS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/04/01/REDIS/%E4%B8%BA%E4%BB%80%E4%B9%88redis%E5%86%85%E5%AD%98%E4%B8%8D%E5%AE%9C%E8%BF%87%E5%A4%A7/</loc>
+    <lastmod>2018-03-31T18:15:49.102Z</lastmod>
+    <data>
+        <display>
+        <title> 为什么redis内存不宜过大</title>
+        <pubTime>2018-03-31T16:59:54.294Z</pubTime>
+        
+        <tag>redis</tag>
+         
+         
+           
+             
+              <breadCrumb title="REDIS" url="http://yoursite.com/categories/REDIS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/04/01/REDIS/redis%E9%9B%86%E7%BE%A4%E4%B8%BB%E5%BA%93%E6%9C%89%E8%AF%BB%E6%B5%81%E9%87%8F-/</loc>
+    <lastmod>2018-03-31T18:15:22.789Z</lastmod>
+    <data>
+        <display>
+        <title> redis集群主库为什么要读写流量</title>
+        <pubTime>2018-03-31T16:59:54.288Z</pubTime>
+        
+        <tag>redis</tag>
+         
+         
+           
+             
+              <breadCrumb title="REDIS" url="http://yoursite.com/categories/REDIS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/04/01/REDIS/redis%E8%B6%85%E6%97%B6%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/</loc>
+    <lastmod>2018-03-31T18:14:48.992Z</lastmod>
+    <data>
+        <display>
+        <title>redis超时问题排查</title>
+        <pubTime>2018-03-31T16:59:54.277Z</pubTime>
+        
+        <tag>redis</tag>
+         
+         
+           
+             
+              <breadCrumb title="REDIS" url="http://yoursite.com/categories/REDIS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/04/01/REDIS/redis%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96_RDB_AOF/</loc>
+    <lastmod>2018-03-31T18:14:14.064Z</lastmod>
+    <data>
+        <display>
+        <title> redis数据持久化_RDB_AOF</title>
+        <pubTime>2018-03-31T16:59:54.243Z</pubTime>
+        
+        <tag>redis</tag>
+         
+         
+           
+             
+              <breadCrumb title="REDIS" url="http://yoursite.com/categories/REDIS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/04/REDIS/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E9%80%82%E5%90%88%E5%81%9A%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</loc>
+    <lastmod>2018-03-31T18:11:49.799Z</lastmod>
+    <data>
+        <display>
+        <title>redis为什么不适合做消息队列</title>
+        <pubTime>2017-07-04T11:32:48.000Z</pubTime>
+        
+        <tag>redis</tag>
+         
+        <tag>mq</tag>
+         
+         
+           
+             
+              <breadCrumb title="REDIS" url="http://yoursite.com/categories/REDIS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/04/REDIS/redis%E5%8D%95%E8%BF%9B%E7%A8%8B%E5%8D%95%E7%BA%BF%E7%A8%8B%E4%BC%98%E7%82%B9/</loc>
+    <lastmod>2018-03-31T18:08:17.191Z</lastmod>
+    <data>
+        <display>
+        <title> redis单进程单线程优点</title>
+        <pubTime>2017-07-04T11:32:48.000Z</pubTime>
+        
+        <tag>redis</tag>
+         
+         
+           
+             
+              <breadCrumb title="REDIS" url="http://yoursite.com/categories/REDIS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/04/REDIS/php+redis+lua/</loc>
+    <lastmod>2018-03-31T18:07:35.851Z</lastmod>
+    <data>
+        <display>
+        <title>php+redis+lua</title>
+        <pubTime>2017-07-04T11:32:48.000Z</pubTime>
+        
+        <tag>redis</tag>
+         
+        <tag>lua</tag>
+         
+         
+           
+             
+              <breadCrumb title="REDIS" url="http://yoursite.com/categories/REDIS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/04/REDIS/redis%E8%BF%87%E6%9C%9F%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F%E4%BB%A5%E5%8F%8A%E5%88%A0%E9%99%A4%E6%96%B9%E5%BC%8F/</loc>
+    <lastmod>2018-03-31T18:01:59.558Z</lastmod>
+    <data>
+        <display>
+        <title>redis过期数据存储方式以及删除方式</title>
+        <pubTime>2017-07-04T11:32:48.000Z</pubTime>
+        
+        <tag>redis</tag>
+         
+         
+           
+             
+              <breadCrumb title="REDIS" url="http://yoursite.com/categories/REDIS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/14/REDIS/redis%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_%E5%AD%97%E7%AC%A6%E4%B8%B2/</loc>
+    <lastmod>2018-03-31T18:01:45.569Z</lastmod>
+    <data>
+        <display>
+        <title>redis数据结构_字符串</title>
+        <pubTime>2017-06-14T07:58:48.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+        <tag>linux</tag>
+         
+        <tag>redis</tag>
+         
+         
+           
+             
+              <breadCrumb title="REDIS" url="http://yoursite.com/categories/REDIS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/14/REDIS/redis%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_%E5%AD%97%E5%85%B8(hash_map)/</loc>
+    <lastmod>2018-03-31T18:01:42.899Z</lastmod>
+    <data>
+        <display>
+        <title>redis数据结构_字典(hash_map)</title>
+        <pubTime>2017-06-14T10:58:48.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+        <tag>linux</tag>
+         
+        <tag>redis</tag>
+         
+         
+           
+             
+              <breadCrumb title="REDIS" url="http://yoursite.com/categories/REDIS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/14/REDIS/redis%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_%E6%95%B4%E6%95%B0%E9%9B%86%E5%90%88/</loc>
+    <lastmod>2018-03-31T18:01:41.032Z</lastmod>
+    <data>
+        <display>
+        <title>redis数据结构_整数集合</title>
+        <pubTime>2017-06-14T06:58:48.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+        <tag>linux</tag>
+         
+        <tag>redis</tag>
+         
+         
+           
+             
+              <breadCrumb title="REDIS" url="http://yoursite.com/categories/REDIS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/14/REDIS/redis%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_%E8%B7%B3%E8%B7%83%E8%A1%A8/</loc>
+    <lastmod>2018-03-31T18:01:39.174Z</lastmod>
+    <data>
+        <display>
+        <title>redis数据结构_跳跃表</title>
+        <pubTime>2017-06-14T09:58:48.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+        <tag>linux</tag>
+         
+        <tag>redis</tag>
+         
+         
+           
+             
+              <breadCrumb title="REDIS" url="http://yoursite.com/categories/REDIS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/14/REDIS/redis%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_%E9%93%BE%E8%A1%A8/</loc>
+    <lastmod>2018-03-31T18:01:37.332Z</lastmod>
+    <data>
+        <display>
+        <title>redis数据结构_链表</title>
+        <pubTime>2017-06-14T09:58:48.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+        <tag>linux</tag>
+         
+        <tag>redis</tag>
+         
+         
+           
+             
+              <breadCrumb title="REDIS" url="http://yoursite.com/categories/REDIS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/14/PHP/composer%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2018-03-31T18:00:18.628Z</lastmod>
+    <data>
+        <display>
+        <title>composer的安装与使用</title>
+        <pubTime>2017-06-14T03:45:23.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+        <tag>composer</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/04/03/PHP/http%E5%8D%8F%E8%AE%AE/</loc>
+    <lastmod>2018-03-31T18:00:15.959Z</lastmod>
+    <data>
+        <display>
+        <title>http协议</title>
+        <pubTime>2016-04-03T00:20:19.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/05/14/PHP/IO%E5%A4%8D%E7%94%A8%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B%E3%80%81%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%8C%BA%E5%88%AB/</loc>
+    <lastmod>2018-03-31T18:00:13.903Z</lastmod>
+    <data>
+        <display>
+        <title>I/O复用与多线程、多进程区别</title>
+        <pubTime>2016-05-13T16:00:00.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/14/PHP/monolog%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2018-03-31T18:00:12.090Z</lastmod>
+    <data>
+        <display>
+        <title>monolog使用</title>
+        <pubTime>2017-06-14T03:45:23.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+        <tag>composer</tag>
+         
+        <tag>monolog</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/12/01/PHP/php%E5%93%88%E8%A5%BF%E5%A4%84%E7%90%86%E5%86%B2%E7%AA%81%E7%9A%84%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2018-03-31T18:00:03.585Z</lastmod>
+    <data>
+        <display>
+        <title>php处理哈西冲突的方法</title>
+        <pubTime>2016-11-30T16:00:00.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/04/01/PHP/php%E5%8E%BB%E9%99%A4%E6%89%80%E6%9C%89%E6%A0%87%E7%82%B9/</loc>
+    <lastmod>2018-03-31T17:59:50.630Z</lastmod>
+    <data>
+        <display>
+        <title>php去除所有标点</title>
+        <pubTime>2016-04-01T07:20:19.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/12/01/PHP/php%E6%95%B0%E7%BB%84%E7%9A%84hash%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2018-03-31T17:59:48.364Z</lastmod>
+    <data>
+        <display>
+        <title>php数组的hash算法</title>
+        <pubTime>2016-11-30T16:00:00.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/01/08/PHP/php%E6%95%B0%E7%BB%84%E5%8F%8A%E9%81%8D%E5%8E%86/</loc>
+    <lastmod>2018-03-31T17:59:46.421Z</lastmod>
+    <data>
+        <display>
+        <title>php数组及遍历</title>
+        <pubTime>2017-01-07T16:00:00.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/05/04/PHP/require%E3%80%81include%E3%80%81require_once%E3%80%81include_once%E5%8C%BA%E5%88%AB/</loc>
+    <lastmod>2018-03-31T17:59:43.951Z</lastmod>
+    <data>
+        <display>
+        <title>require、include、require_once、include_once区别</title>
+        <pubTime>2016-05-03T16:00:00.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/09/22/PHP/xunsearch%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2018-03-31T17:59:41.472Z</lastmod>
+    <data>
+        <display>
+        <title>xunsearch搜索引擎的安装与使用</title>
+        <pubTime>2016-09-22T12:07:19.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/04/28/PHP/%E5%AE%89%E8%A3%85lnmp%E7%8E%AF%E5%A2%83/</loc>
+    <lastmod>2018-03-31T17:59:39.660Z</lastmod>
+    <data>
+        <display>
+        <title>安装lnmp环境</title>
+        <pubTime>2016-04-28T15:42:25.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+        <tag>linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/01/08/PHP/%E4%BB%BFsmb%E5%AE%9E%E6%97%B6%E5%90%8C%E6%AD%A5%E8%84%9A%E6%9C%AC/</loc>
+    <lastmod>2018-03-31T17:59:37.772Z</lastmod>
+    <data>
+        <display>
+        <title>仿smb实时同步脚本</title>
+        <pubTime>2017-01-07T16:00:00.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/11/29/PHP/%E7%BC%93%E5%AD%98%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2018-03-31T17:59:35.803Z</lastmod>
+    <data>
+        <display>
+        <title>缓存总结</title>
+        <pubTime>2016-11-29T12:32:19.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/04/03/PHP/%E4%BC%9A%E8%AF%9D%E6%8E%A7%E5%88%B6%EF%BC%9Acookie%20VS%20session/</loc>
+    <lastmod>2018-03-31T17:59:33.570Z</lastmod>
+    <data>
+        <display>
+        <title>会话控制：cookie VS session</title>
+        <pubTime>2016-04-03T12:20:50.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/09/21/PHP/%E5%88%A4%E6%96%AD%E6%98%AF%E4%B8%8D%E6%98%AF%E6%95%B4%E6%95%B0/</loc>
+    <lastmod>2018-03-31T17:59:31.514Z</lastmod>
+    <data>
+        <display>
+        <title>判断是不是整数</title>
+        <pubTime>2016-09-21T02:32:19.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/08/23/PHP/%E5%88%A4%E6%96%AD%E9%82%AE%E7%AE%B1%E5%B8%90%E5%8F%B7/</loc>
+    <lastmod>2018-03-31T17:59:29.717Z</lastmod>
+    <data>
+        <display>
+        <title>判断邮箱帐号</title>
+        <pubTime>2016-08-23T03:20:19.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/04/02/PHP/%E8%BE%93%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E6%98%BE%E7%A4%BA%E7%BD%91%E9%A1%B5%E8%BF%87%E7%A8%8B/</loc>
+    <lastmod>2018-03-31T17:59:27.174Z</lastmod>
+    <data>
+        <display>
+        <title>输入网址到显示网页过程</title>
+        <pubTime>2016-04-02T10:20:19.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/03/PHP/%E5%AF%BB%E6%89%BE%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E5%80%BC/</loc>
+    <lastmod>2018-03-31T17:59:23.894Z</lastmod>
+    <data>
+        <display>
+        <title>寻找数组中重复的值</title>
+        <pubTime>2017-07-03T03:20:19.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://yoursite.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/03/30/OTHERS/linux%E6%96%87%E4%BB%B6%E6%AF%94%E8%BE%83%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2018-03-31T17:59:08.349Z</lastmod>
+    <data>
+        <display>
+        <title>linux文件比较命令</title>
+        <pubTime>2016-03-30T07:27:58.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="OTHERS" url="http://yoursite.com/categories/OTHERS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/09/29/OTHERS/linux%E4%B8%AD.bash_profile%E5%92%8C.bashrc%E4%B8%8E%E5%91%BD%E4%BB%A4%E8%B5%B7%E5%88%AB%E5%90%8Dalias/</loc>
+    <lastmod>2018-03-31T17:59:06.083Z</lastmod>
+    <data>
+        <display>
+        <title>.bash_profile和.bashrc与linux命令起别名alias</title>
+        <pubTime>2016-09-29T02:47:18.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="OTHERS" url="http://yoursite.com/categories/OTHERS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/04/29/OTHERS/samba%E6%9C%8D%E5%8A%A1%E5%99%A8&nginx%E9%85%8D%E7%BD%AE-%E3%80%8Bwindows%E6%98%A0%E5%B0%84/</loc>
+    <lastmod>2018-03-31T17:59:01.817Z</lastmod>
+    <data>
+        <display>
+        <title>samba服务器&nginx配置->windows映射</title>
+        <pubTime>2016-04-29T09:09:03.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+        <tag>linux</tag>
+         
+        <tag>nginx</tag>
+         
+         
+           
+             
+              <breadCrumb title="OTHERS" url="http://yoursite.com/categories/OTHERS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/14/OTHERS/%E7%BF%BB%E5%A2%99%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2018-03-31T17:58:54.497Z</lastmod>
+    <data>
+        <display>
+        <title>翻墙方法</title>
+        <pubTime>2017-06-14T03:41:23.000Z</pubTime>
+        
+        <tag>tools</tag>
+         
+         
+           
+             
+              <breadCrumb title="OTHERS" url="http://yoursite.com/categories/OTHERS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/06/15/OTHERS/%E5%B0%86Linux%E5%91%BD%E4%BB%A4%E7%9A%84%E7%BB%93%E6%9E%9C%E4%BD%9C%E4%B8%BA%E4%B8%8B%E4%B8%80%E4%B8%AA%E5%91%BD%E4%BB%A4%E7%9A%84%E5%8F%82%E6%95%B0/</loc>
+    <lastmod>2018-03-31T17:58:52.149Z</lastmod>
+    <data>
+        <display>
+        <title>将Linux命令的结果作为下一个命令的参数</title>
+        <pubTime>2016-06-15T08:14:58.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="OTHERS" url="http://yoursite.com/categories/OTHERS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/29/OTHERS/%E5%A4%96%E7%BD%91%E5%8F%AF%E8%A7%81%E6%9C%8D%E5%8A%A1/</loc>
+    <lastmod>2018-03-31T17:58:38.302Z</lastmod>
+    <data>
+        <display>
+        <title>外网可见服务</title>
+        <pubTime>2017-06-29T02:26:23.000Z</pubTime>
+        
+        <tag>tools</tag>
+         
+         
+           
+             
+              <breadCrumb title="OTHERS" url="http://yoursite.com/categories/OTHERS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/09/04/OTHERS/linux%E6%B7%BB%E5%8A%A0%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/</loc>
+    <lastmod>2018-03-31T17:58:19.645Z</lastmod>
+    <data>
+        <display>
+        <title>linux添加开机启动</title>
+        <pubTime>2016-09-03T16:03:58.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+        <tag>blog</tag>
+         
+        <tag>hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="OTHERS" url="http://yoursite.com/categories/OTHERS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/09/04/OTHERS/linux%E5%89%8D%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E4%BA%92%E5%88%87%E6%8D%A2/</loc>
+    <lastmod>2018-03-31T17:58:05.612Z</lastmod>
+    <data>
+        <display>
+        <title>linux前后台进程以及相互切换</title>
+        <pubTime>2016-09-04T02:58:48.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+        <tag>blog</tag>
+         
+        <tag>hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="OTHERS" url="http://yoursite.com/categories/OTHERS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/14/OTHERS/hexo%E5%9C%A8%E6%96%B0%E7%94%B5%E8%84%91%E9%83%A8%E7%BD%B2%E4%BB%A5%E5%89%8D%E7%8E%AF%E5%A2%83/</loc>
+    <lastmod>2018-03-31T17:57:43.948Z</lastmod>
+    <data>
+        <display>
+        <title>hexo在新电脑部署以前环境</title>
+        <pubTime>2017-06-14T02:41:23.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+        <tag>blog</tag>
+         
+        <tag>hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="OTHERS" url="http://yoursite.com/categories/OTHERS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/03/30/OTHERS/git%E7%9A%84%E5%AE%89%E8%A3%85/</loc>
+    <lastmod>2018-03-31T17:57:41.417Z</lastmod>
+    <data>
+        <display>
+        <title>git的安装与基本使用</title>
+        <pubTime>2016-03-30T15:10:21.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+        <tag>linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="OTHERS" url="http://yoursite.com/categories/OTHERS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/28/OTHERS/charles%E4%BB%A3%E7%90%86https/</loc>
+    <lastmod>2018-03-31T17:57:29.323Z</lastmod>
+    <data>
+        <display>
+        <title>charles代理https</title>
+        <pubTime>2017-06-28T06:41:23.000Z</pubTime>
+        
+        <tag>tools</tag>
+         
+        <tag>charles</tag>
+         
+         
+           
+             
+              <breadCrumb title="OTHERS" url="http://yoursite.com/categories/OTHERS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/14/MYSQL/insert%E4%B8%8E%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2018-03-31T17:56:54.138Z</lastmod>
+    <data>
+        <display>
+        <title>insert与唯一索引问题</title>
+        <pubTime>2017-06-14T04:41:23.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+        <tag>php</tag>
+         
+         
+           
+             
+              <breadCrumb title="MYSQL" url="http://yoursite.com/categories/MYSQL/"/>
+          
         </display>
     </data>
     </url>
