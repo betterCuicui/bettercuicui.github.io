@@ -194,7 +194,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/blog/" style="font-size: 12.86px;">blog</a> <a href="/tags/cgi/" style="font-size: 10px;">cgi</a> <a href="/tags/charles/" style="font-size: 10px;">charles</a> <a href="/tags/composer/" style="font-size: 11.43px;">composer</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/fastcgi/" style="font-size: 10px;">fastcgi</a> <a href="/tags/fastcgi-finish-request/" style="font-size: 10px;">fastcgi_finish_request</a> <a href="/tags/git/" style="font-size: 14.29px;">git</a> <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/innodb/" style="font-size: 14.29px;">innodb</a> <a href="/tags/linux/" style="font-size: 17.14px;">linux</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/monolog/" style="font-size: 10px;">monolog</a> <a href="/tags/mq/" style="font-size: 12.86px;">mq</a> <a href="/tags/mysql/" style="font-size: 15.71px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-cgi/" style="font-size: 10px;">php-cgi</a> <a href="/tags/php-fpm/" style="font-size: 10px;">php-fpm</a> <a href="/tags/redis/" style="font-size: 18.57px;">redis</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/systemctl/" style="font-size: 10px;">systemctl</a> <a href="/tags/tools/" style="font-size: 12.86px;">tools</a> <a href="/tags/分布式/" style="font-size: 10px;">分布式</a> <a href="/tags/架构/" style="font-size: 15.71px;">架构</a>
+                        <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/blog/" style="font-size: 12.5px;">blog</a> <a href="/tags/cgi/" style="font-size: 10px;">cgi</a> <a href="/tags/charles/" style="font-size: 10px;">charles</a> <a href="/tags/composer/" style="font-size: 11.25px;">composer</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/fastcgi/" style="font-size: 10px;">fastcgi</a> <a href="/tags/fastcgi-finish-request/" style="font-size: 10px;">fastcgi_finish_request</a> <a href="/tags/git/" style="font-size: 13.75px;">git</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/innodb/" style="font-size: 13.75px;">innodb</a> <a href="/tags/linux/" style="font-size: 17.5px;">linux</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/monolog/" style="font-size: 10px;">monolog</a> <a href="/tags/mq/" style="font-size: 12.5px;">mq</a> <a href="/tags/mysql/" style="font-size: 16.25px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-cgi/" style="font-size: 10px;">php-cgi</a> <a href="/tags/php-fpm/" style="font-size: 10px;">php-fpm</a> <a href="/tags/redis/" style="font-size: 18.75px;">redis</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/systemctl/" style="font-size: 10px;">systemctl</a> <a href="/tags/tools/" style="font-size: 12.5px;">tools</a> <a href="/tags/分布式/" style="font-size: 10px;">分布式</a> <a href="/tags/架构/" style="font-size: 15px;">架构</a>
                     </div>
                 </section>
                 
@@ -274,6 +274,216 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-REDIS/redis数据结构_链表" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2017/06/14/REDIS/redis数据结构_链表/" class="article-date">
+      <time datetime="2017-06-14T09:58:48.000Z" itemprop="datePublished">2017-06-14</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2017/06/14/REDIS/redis数据结构_链表/">redis数据结构_链表</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>链表提供了高效的节点重排能力，以及顺序性的节点访问方式，并且可以通过增删节点来灵活的调整链表的长度。被广泛用于实现redis各种功能，比如列表键、发布与订阅、慢查询、监视器等。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/REDIS/">REDIS</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a   href="/2017/06/14/REDIS/redis数据结构_链表/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-REDIS/redis数据结构_跳跃表" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2017/06/14/REDIS/redis数据结构_跳跃表/" class="article-date">
+      <time datetime="2017-06-14T09:58:48.000Z" itemprop="datePublished">2017-06-14</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2017/06/14/REDIS/redis数据结构_跳跃表/">redis数据结构_跳跃表</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p><a href="http://www.cnblogs.com/thrillerz/p/4505550.html" target="_blank" rel="noopener">跳跃表原理简单版</a><br><img src="/public/image/redis/f26a06e9-481a-4c59-b0eb-bc506a50fc94.jpg" alt=""><br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/REDIS/">REDIS</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a   href="/2017/06/14/REDIS/redis数据结构_跳跃表/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-REDIS/redis数据结构_字符串" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2017/06/14/REDIS/redis数据结构_字符串/" class="article-date">
+      <time datetime="2017-06-14T07:58:48.000Z" itemprop="datePublished">2017-06-14</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2017/06/14/REDIS/redis数据结构_字符串/">redis数据结构_字符串</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>redis没有使用C语言的传统字符串表示，而是自己构建了一种名为简单动态字符串(simple dynamic string,SDS)的抽象类型，并将SDS用作redis的默认字符串表示。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/REDIS/">REDIS</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a   href="/2017/06/14/REDIS/redis数据结构_字符串/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-REDIS/redis数据结构_整数集合" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -695,76 +905,6 @@
 
 
   
-    <article id="post-PHP/php数组及遍历" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2017/01/08/PHP/php数组及遍历/" class="article-date">
-      <time datetime="2017-01-07T16:00:00.000Z" itemprop="datePublished">2017-01-08</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2017/01/08/PHP/php数组及遍历/">php数组及遍历</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>前面我们已经介绍了php数组中的hash算法以及拉链法。现在我们来深入hashTable。<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/PHP/">PHP</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2017/01/08/PHP/php数组及遍历/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-PHP/仿smb实时同步脚本" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -835,149 +975,9 @@
 
 
   
-    <article id="post-PHP/php哈西处理冲突的方法" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2016/12/01/PHP/php哈西处理冲突的方法/" class="article-date">
-      <time datetime="2016-11-30T16:00:00.000Z" itemprop="datePublished">2016-12-01</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2016/12/01/PHP/php哈西处理冲突的方法/">php处理哈西冲突的方法</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>前面介绍过<a href="http://bettercuicui.github.io/2016/12/01/php/php数组的hash算法/" target="_blank" rel="noopener">php的hash算法</a>是DJBX33A哈西算法。目前来说是不存在没有冲突的hash算法的，评价一个hash算法的好坏一般是看中数据分部的均匀程度与计算的效率。<br>既然有冲突，我们就要解决冲突。<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/PHP/">PHP</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2016/12/01/PHP/php哈西处理冲突的方法/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-PHP/php数组的hash算法" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2016/12/01/PHP/php数组的hash算法/" class="article-date">
-      <time datetime="2016-11-30T16:00:00.000Z" itemprop="datePublished">2016-12-01</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2016/12/01/PHP/php数组的hash算法/">php数组的hash算法</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>php的数组是万能的，能够实现一切的常用的数据结构：vector、双向单向链表、map等都不在话下。我觉得php的核心就是数组，而我们知道php的数组是基于hash实现的，那么hash就是php的核心了。<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/PHP/">PHP</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2016/12/01/PHP/php数组的hash算法/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
     </nav>
   
 
