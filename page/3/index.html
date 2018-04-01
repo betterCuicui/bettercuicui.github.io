@@ -194,7 +194,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/blog/" style="font-size: 12.86px;">blog</a> <a href="/tags/cgi/" style="font-size: 10px;">cgi</a> <a href="/tags/charles/" style="font-size: 10px;">charles</a> <a href="/tags/composer/" style="font-size: 11.43px;">composer</a> <a href="/tags/fastcgi/" style="font-size: 10px;">fastcgi</a> <a href="/tags/fastcgi-finish-request/" style="font-size: 10px;">fastcgi_finish_request</a> <a href="/tags/git/" style="font-size: 14.29px;">git</a> <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/innodb/" style="font-size: 14.29px;">innodb</a> <a href="/tags/linux/" style="font-size: 17.14px;">linux</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/monolog/" style="font-size: 10px;">monolog</a> <a href="/tags/mq/" style="font-size: 12.86px;">mq</a> <a href="/tags/mysql/" style="font-size: 15.71px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-cgi/" style="font-size: 10px;">php-cgi</a> <a href="/tags/php-fpm/" style="font-size: 10px;">php-fpm</a> <a href="/tags/redis/" style="font-size: 18.57px;">redis</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/systemctl/" style="font-size: 10px;">systemctl</a> <a href="/tags/tools/" style="font-size: 12.86px;">tools</a> <a href="/tags/分布式/" style="font-size: 10px;">分布式</a> <a href="/tags/架构/" style="font-size: 15.71px;">架构</a>
+                        <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/blog/" style="font-size: 12.86px;">blog</a> <a href="/tags/cgi/" style="font-size: 10px;">cgi</a> <a href="/tags/charles/" style="font-size: 10px;">charles</a> <a href="/tags/composer/" style="font-size: 11.43px;">composer</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/fastcgi/" style="font-size: 10px;">fastcgi</a> <a href="/tags/fastcgi-finish-request/" style="font-size: 10px;">fastcgi_finish_request</a> <a href="/tags/git/" style="font-size: 14.29px;">git</a> <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/innodb/" style="font-size: 14.29px;">innodb</a> <a href="/tags/linux/" style="font-size: 17.14px;">linux</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/monolog/" style="font-size: 10px;">monolog</a> <a href="/tags/mq/" style="font-size: 12.86px;">mq</a> <a href="/tags/mysql/" style="font-size: 15.71px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-cgi/" style="font-size: 10px;">php-cgi</a> <a href="/tags/php-fpm/" style="font-size: 10px;">php-fpm</a> <a href="/tags/redis/" style="font-size: 18.57px;">redis</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/systemctl/" style="font-size: 10px;">systemctl</a> <a href="/tags/tools/" style="font-size: 12.86px;">tools</a> <a href="/tags/分布式/" style="font-size: 10px;">分布式</a> <a href="/tags/架构/" style="font-size: 15.71px;">架构</a>
                     </div>
                 </section>
                 
@@ -340,6 +340,88 @@
 
 
   
+    <article id="post-OTHERS/docker" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2017/06/29/OTHERS/docker/" class="article-date">
+      <time datetime="2017-06-29T02:26:23.000Z" itemprop="datePublished">2017-06-29</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2017/06/29/OTHERS/docker/">docker</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>docker思想来自于集装箱。在一艘大船上，为了把水果个药品的货物一起运输，那么就需要把水果单独放在集装箱，药瓶单独放在集装箱，这样就不需要专门运输水果或者药品的大船了。而我们现实生产环境中，一台自己的机器，可能需要同时开发多个app，所以会产生很多的问题：</p>
+<ul>
+<li>不同的应用程序可能会有不同的应用环境，比如.net开发的网站和php开发的网站依赖的软件就不一样</li>
+<li>你开发软件的时候用的是Ubuntu，但是运维管理的都是centos，运维在把你的软件从开发环境转移到生产环境的时候就会遇到一些Ubuntu转centos的问题</li>
+<li>在服务器负载方面，如果你单独开一个虚拟机，那么虚拟机会占用空闲内存的，docker部署的话，这些内存就会利用起来</li>
+</ul>
+<p>而docker则是把每个app以及所依赖的环境都集中在一个docker。<br>从此以后我就不用配环境了，也不用装环境了，更不用统一环境了，因为docker都打包好了啊～。所以docker的好处为：</p>
+<ul>
+<li>1.保证了线上线下环境的一致性</li>
+<li>2.极大的简化了webapp的部署流程（需要使用某个app模块，直接把该app的docker部署就可以）</li>
+<li>3.实现了沙盒机制，提高了安全性（app被攻击，不会影响操作系统，直接重新启动一个镜像就可以了）</li>
+<li>4.实现了模块化，提高了复用性（比如mysql一个docker，这样，别的模块都可以使用mysql的docker）</li>
+<li>5.实现了虚拟化，提高硬件利用率
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/OTHERS/">OTHERS</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a   href="/2017/06/29/OTHERS/docker/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-OTHERS/外网可见服务" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -410,76 +492,6 @@
 
 
   
-    <article id="post-OTHERS/systemctl服务管理命令" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2017/06/28/OTHERS/systemctl服务管理命令/" class="article-date">
-      <time datetime="2017-06-28T08:38:58.000Z" itemprop="datePublished">2017-06-28</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2017/06/28/OTHERS/systemctl服务管理命令/">systemctl服务管理命令</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>重新安装了centos，启动服务的时候，学习了systemctl命令。 这个是系统服务管理器命令，它实际上将 service 和 chkconfig 这两个命令组合到一起，特别强大，也很方便。<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/OTHERS/">OTHERS</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/systemctl/">systemctl</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2017/06/28/OTHERS/systemctl服务管理命令/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-OTHERS/awk统计求和、求平均、最大值、最小值" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -530,6 +542,76 @@
       
         <p class="article-more-link">
           <a   href="/2017/06/28/OTHERS/awk统计求和、求平均、最大值、最小值/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-OTHERS/systemctl服务管理命令" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2017/06/28/OTHERS/systemctl服务管理命令/" class="article-date">
+      <time datetime="2017-06-28T08:38:58.000Z" itemprop="datePublished">2017-06-28</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2017/06/28/OTHERS/systemctl服务管理命令/">systemctl服务管理命令</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>重新安装了centos，启动服务的时候，学习了systemctl命令。 这个是系统服务管理器命令，它实际上将 service 和 chkconfig 这两个命令组合到一起，特别强大，也很方便。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/OTHERS/">OTHERS</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/systemctl/">systemctl</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a   href="/2017/06/28/OTHERS/systemctl服务管理命令/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -692,76 +774,6 @@
 
 
   
-    <article id="post-REDIS/redis数据结构_跳跃表" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2017/06/14/REDIS/redis数据结构_跳跃表/" class="article-date">
-      <time datetime="2017-06-14T09:58:48.000Z" itemprop="datePublished">2017-06-14</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2017/06/14/REDIS/redis数据结构_跳跃表/">redis数据结构_跳跃表</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p><a href="http://www.cnblogs.com/thrillerz/p/4505550.html" target="_blank" rel="noopener">跳跃表原理简单版</a><br><img src="/public/image/redis/f26a06e9-481a-4c59-b0eb-bc506a50fc94.jpg" alt=""><br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/REDIS/">REDIS</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2017/06/14/REDIS/redis数据结构_跳跃表/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-REDIS/redis数据结构_链表" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -832,6 +844,76 @@
 
 
   
+    <article id="post-REDIS/redis数据结构_跳跃表" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2017/06/14/REDIS/redis数据结构_跳跃表/" class="article-date">
+      <time datetime="2017-06-14T09:58:48.000Z" itemprop="datePublished">2017-06-14</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2017/06/14/REDIS/redis数据结构_跳跃表/">redis数据结构_跳跃表</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p><a href="http://www.cnblogs.com/thrillerz/p/4505550.html" target="_blank" rel="noopener">跳跃表原理简单版</a><br><img src="/public/image/redis/f26a06e9-481a-4c59-b0eb-bc506a50fc94.jpg" alt=""><br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/REDIS/">REDIS</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a   href="/2017/06/14/REDIS/redis数据结构_跳跃表/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-REDIS/redis数据结构_字符串" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -882,76 +964,6 @@
       
         <p class="article-more-link">
           <a   href="/2017/06/14/REDIS/redis数据结构_字符串/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-REDIS/redis数据结构_整数集合" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2017/06/14/REDIS/redis数据结构_整数集合/" class="article-date">
-      <time datetime="2017-06-14T06:58:48.000Z" itemprop="datePublished">2017-06-14</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2017/06/14/REDIS/redis数据结构_整数集合/">redis数据结构_整数集合</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>redis数据结构_整数集合<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/REDIS/">REDIS</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2017/06/14/REDIS/redis数据结构_整数集合/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
