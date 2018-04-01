@@ -415,6 +415,76 @@
 
 
   
+    <article id="post-PHP/php数组去重3种方式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/04/01/PHP/php数组去重3种方式/" class="article-date">
+      <time datetime="2018-04-01T03:20:19.000Z" itemprop="datePublished">2018-04-01</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/04/01/PHP/php数组去重3种方式/">php数组去重3种方式</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>在对数组进行去重的时候，我们第一想到的api就是array_unique。但是array_unique并不是最快的。<br>比如使用<code>array_key(array_flip($array))</code>或者使用<code>array_flip(array_flip($array))</code>。<br>虽然这三种效果都是一样的，但是效率，后面两种却比前面的快了特别多。这是为什么呢？</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a   href="/2018/04/01/PHP/php数组去重3种方式/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-架构/大型网站技术架构" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -885,76 +955,6 @@
       
         <p class="article-more-link">
           <a   href="/2018/04/01/架构/秒杀系统架构优化思路/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-架构/如何保证mq消息的幂等性" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/04/01/架构/如何保证mq消息的幂等性/" class="article-date">
-      <time datetime="2018-03-31T16:59:54.606Z" itemprop="datePublished">2018-04-01</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/04/01/架构/如何保证mq消息的幂等性/"> 如何保证mq消息的幂等性</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>由于mq是为了系统之间的解耦，很好的解除了订阅者、发布者之间的耦合。<br>当mq中的消息发布的时候，如果发布失败，返回非200，或者超时，则直接进行重试的机制，不断的重试。所以目前线上经常有消费者因为代码有问题后，mq的报警就不断，一直fatal。<br>因为mq的重试机制，所以我们需要考虑消息的幂等性。<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/架构/">架构</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mq/">mq</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/架构/">架构</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2018/04/01/架构/如何保证mq消息的幂等性/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>

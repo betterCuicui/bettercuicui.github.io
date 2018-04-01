@@ -7,20 +7,20 @@
   
   
   
-  <title>判断是不是整数 | cuicui</title>
+  <title>php数组去重3种方式 | cuicui</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="首先，我们来了解一下round、ceil、floor、intval这几个函数的区别">
+  <meta name="description" content="在对数组进行去重的时候，我们第一想到的api就是array_unique。但是array_unique并不是最快的。比如使用array_key(array_flip($array))或者使用array_flip(array_flip($array))。虽然这三种效果都是一样的，但是效率，后面两种却比前面的快了特别多。这是为什么呢？">
 <meta name="keywords" content="php">
 <meta property="og:type" content="article">
-<meta property="og:title" content="判断是不是整数">
-<meta property="og:url" content="http://yoursite.com/2016/09/21/PHP/判断是不是整数/index.html">
+<meta property="og:title" content="php数组去重3种方式">
+<meta property="og:url" content="http://yoursite.com/2018/04/01/PHP/php数组去重3种方式/index.html">
 <meta property="og:site_name" content="cuicui">
-<meta property="og:description" content="首先，我们来了解一下round、ceil、floor、intval这几个函数的区别">
+<meta property="og:description" content="在对数组进行去重的时候，我们第一想到的api就是array_unique。但是array_unique并不是最快的。比如使用array_key(array_flip($array))或者使用array_flip(array_flip($array))。虽然这三种效果都是一样的，但是效率，后面两种却比前面的快了特别多。这是为什么呢？">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-03-31T17:59:31.514Z">
+<meta property="og:updated_time" content="2018-04-01T14:18:05.352Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="判断是不是整数">
-<meta name="twitter:description" content="首先，我们来了解一下round、ceil、floor、intval这几个函数的区别">
+<meta name="twitter:title" content="php数组去重3种方式">
+<meta name="twitter:description" content="在对数组进行去重的时候，我们第一想到的api就是array_unique。但是array_unique并不是最快的。比如使用array_key(array_flip($array))或者使用array_flip(array_flip($array))。虽然这三种效果都是一样的，但是效率，后面两种却比前面的快了特别多。这是为什么呢？">
   
     <link rel="alternative" href="/atom.xml" title="cuicui" type="application/atom+xml">
   
@@ -275,11 +275,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-PHP/判断是不是整数" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-PHP/php数组去重3种方式" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2016/09/21/PHP/判断是不是整数/" class="article-date">
-      <time datetime="2016-09-21T02:32:19.000Z" itemprop="datePublished">2016-09-21</time>
+      <a  href="/2018/04/01/PHP/php数组去重3种方式/" class="article-date">
+      <time datetime="2018-04-01T03:20:19.000Z" itemprop="datePublished">2018-04-01</time>
 </a>
 
     </div>
@@ -293,7 +293,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      判断是不是整数
+      php数组去重3种方式
     </h1>
   
 
@@ -319,16 +319,37 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>首先，我们来了解一下<code>round、ceil、floor、intval</code>这几个函数的区别<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$a = 3.4;</span><br><span class="line">$b = 3.5;</span><br><span class="line">echo round($a);//3</span><br><span class="line">echo round($b);//4</span><br><span class="line">//round4舍5入</span><br><span class="line">echo ceil($a);//4</span><br><span class="line">echo ceil($b);//4</span><br><span class="line">//ceil返回不小与$val的下一个整数，所以ceil(3.0)=3</span><br><span class="line">echo floor($a);//3</span><br><span class="line">echo floor($b);//3</span><br><span class="line">//floor去掉$val的小数部分的整数。</span><br><span class="line">echo intval($a);//3</span><br><span class="line">echo intval($b);//3</span><br><span class="line">//intval取整数部分，与floor的区别是 intval能转换成非10进制的数。</span><br></pre></td></tr></table></figure></p>
-<h3 id="判断数字是不是整数？"><a href="#判断数字是不是整数？" class="headerlink" title="判断数字是不是整数？"></a>判断数字是不是整数？</h3><ul>
-<li><code>is_int()</code>可以轻松判断一个数字是不是整数。</li>
-<li><code>floor()</code>舍去小数部分取整-&gt;<code>floor($val) == $val</code></li>
-<li><code>intval()</code>这个函数比floor多了一个功能，就是能够转换成非10进制的整数-&gt;<code>intval($val)==$val</code></li>
-</ul>
-<h3 id="判断字符串是不是整数"><a href="#判断字符串是不是整数" class="headerlink" title="判断字符串是不是整数"></a>判断字符串是不是整数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(preg_match(&apos;/^[0-9]+$/&apos;,$val))&#123;</span><br><span class="line">    ？？？</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>在对数组进行去重的时候，我们第一想到的api就是array_unique。但是array_unique并不是最快的。<br>比如使用<code>array_key(array_flip($array))</code>或者使用<code>array_flip(array_flip($array))</code>。<br>虽然这三种效果都是一样的，但是效率，后面两种却比前面的快了特别多。这是为什么呢？</p>
+<a id="more"></a>
+<h2 id="array-unique"><a href="#array-unique" class="headerlink" title="array_unique"></a>array_unique</h2><p>我们先来讲一下array_unique这个api的实现原理。这个函数是实现原理跟<a href="http://bettercuicui.github.io/2017/08/03/php/php%20sort%E6%8E%92%E5%BA%8F%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" target="_blank" rel="noopener">sort排序实现</a>有很大的相同的地方。</p>
 <ul>
-<li><code>intval</code>-&gt;<code>intval($val) == $val</code> 开始觉得这个可以行，但是现在发现问题intval(‘a3’) == 0 == ‘a3’;</li>
-<li><code>floor</code>-&gt;<code>floor($val) == $val</code>开始也觉得这个行，但是跟上面的同理是不行的。<br><strong>为什么不能使用is_int呢？因为这个函数会对参数的类型进行检测，is_int(“3”)=false,说明is_int（string）=false。</strong></li>
+<li>1、分配内存，初始化一个指针数组，数组里面每一个值，都指向了php数组的hashTable的节点。</li>
+<li>2、对这个指针数组中，每个指针指向的值进行排序，使用的快排。</li>
+<li>3、对排序后的数组，相同的值进行删除操作。</li>
+<li>4、free掉申请的指针数组。</li>
+</ul>
+<p><strong>可以清楚的看到，array_unique这个函数的时间复杂度是O(n long n)，主要耗时在快排上，控件复杂度在O(n)。</strong></p>
+<h2 id="array-flip"><a href="#array-flip" class="headerlink" title="array_flip"></a>array_flip</h2><p>这个函数原本是用来把php数组的key和value互换位置的。那么它的原理是什么呢？</p>
+<ul>
+<li>申请一个数组A。</li>
+<li>遍历原来的hashtable底层链表，对每一个节点，都把节点的value赋值为数组A的key。节点的key赋值为数组A的value。</li>
+<li>对重复的key进行覆盖写</li>
+</ul>
+<p><strong>可以看出，这个api的时间复杂度是O(n)，空间复杂度为O(n)，但是当使用array_flip(array_flip($array))的时候，需要两次空间分配，浪费了空间</strong></p>
+<h2 id="array-key"><a href="#array-key" class="headerlink" title="array_key"></a>array_key</h2><p>这个函数很简单，就是获取所有的数组的key，原理也狠简单</p>
+<ul>
+<li>申请一个数组B</li>
+<li>遍历原数组底层的链表，获取每一个节点的key，插入新的数组B.</li>
+</ul>
+<p><strong>所以这个api的时间复杂度和空间复杂度都是O(n)</strong></p>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p>那么这三个方式，分别应该什么时候使用呢？</p>
+<ul>
+<li>因为array_unique的空间复杂度是O(n),而其他的两种都是O(2n)。</li>
+<li>array_unique的时间复杂度是O(n long n),其他的都是O(n)。</li>
+<li>其他两种相对于array_unique，应该是属于使用了空间换取了时间。</li>
+</ul>
+<h2 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h2><ul>
+<li><a href="http://blog.csdn.net/lz610756247/article/details/51512918" target="_blank" rel="noopener">【性能为王】从PHP源码剖析array_keys和array_unique# 【性能为王】从PHP源码剖析array_keys和array_unique</a></li>
 </ul>
 
       
@@ -338,13 +359,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2016/09/21/PHP/判断是不是整数/">判断是不是整数</a></p>
+        <p><span>本文标题:</span><a  href="/2018/04/01/PHP/php数组去重3种方式/">php数组去重3种方式</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 cuicui 的个人博客">cuicui</a></p>
-        <p><span>发布时间:</span>2016年09月21日 - 10时32分</p>
-        <p><span>最后更新:</span>2018年04月01日 - 01时59分</p>
+        <p><span>发布时间:</span>2018年04月01日 - 11时20分</p>
+        <p><span>最后更新:</span>2018年04月01日 - 22时18分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/09/21/PHP/判断是不是整数/" title="判断是不是整数">http://yoursite.com/2016/09/21/PHP/判断是不是整数/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/09/21/PHP/判断是不是整数/　　作者: cuicui" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/04/01/PHP/php数组去重3种方式/" title="php数组去重3种方式">http://yoursite.com/2018/04/01/PHP/php数组去重3种方式/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/04/01/PHP/php数组去重3种方式/　　作者: cuicui" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -355,18 +376,18 @@
 
 <nav id="article-nav">
   
-    <a  href="/2016/09/22/PHP/xunsearch搜索引擎的安装与使用/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a  href="/2018/04/01/MYSQL/无限极分类/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          xunsearch搜索引擎的安装与使用
+          无限极分类
         
       </div>
     </a>
   
   
-    <a  href="/2016/09/04/OTHERS/linux前后台任务以及相互切换/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">linux前后台进程以及相互切换</div>
+    <a  href="/2018/04/01/架构/大型网站技术架构/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">大型网站技术架构</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -378,7 +399,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#判断数字是不是整数？"><span class="toc-number">1.</span> <span class="toc-text">判断数字是不是整数？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判断字符串是不是整数"><span class="toc-number">2.</span> <span class="toc-text">判断字符串是不是整数</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#array-unique"><span class="toc-number">1.</span> <span class="toc-text">array_unique</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#array-flip"><span class="toc-number">2.</span> <span class="toc-text">array_flip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#array-key"><span class="toc-number">3.</span> <span class="toc-text">array_key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#区别"><span class="toc-number">4.</span> <span class="toc-text">区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#资料"><span class="toc-number">5.</span> <span class="toc-text">资料</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -449,13 +470,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2016/09/22/PHP/xunsearch搜索引擎的安装与使用/" title="上一篇: xunsearch搜索引擎的安装与使用">
+            <a  href="/2018/04/01/MYSQL/无限极分类/" title="上一篇: 无限极分类">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/2016/09/04/OTHERS/linux前后台任务以及相互切换/" title="下一篇: linux前后台进程以及相互切换">
+            <a  href="/2018/04/01/架构/大型网站技术架构/" title="下一篇: 大型网站技术架构">
                 <i class="fa fa-angle-right"></i>
             </a>
         

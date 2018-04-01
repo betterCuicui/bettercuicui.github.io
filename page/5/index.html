@@ -275,10 +275,10 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-PHP/php数组及遍历" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-PHP/仿smb实时同步脚本" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2017/01/08/PHP/php数组及遍历/" class="article-date">
+      <a  href="/2017/01/08/PHP/仿smb实时同步脚本/" class="article-date">
       <time datetime="2017-01-07T16:00:00.000Z" itemprop="datePublished">2017-01-08</time>
 </a>
 
@@ -293,7 +293,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2017/01/08/PHP/php数组及遍历/">php数组及遍历</a>
+      <a  class="article-title" href="/2017/01/08/PHP/仿smb实时同步脚本/">仿smb实时同步脚本</a>
     </h1>
   
 
@@ -304,7 +304,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>前面我们已经介绍了php数组中的hash算法以及拉链法。现在我们来深入hashTable。<br>
+              <p>由于目前公司使用的docker机器，samba特别慢，对于我们这种非vim党、被windows宠坏的是特别痛苦的。<br>以前一直是强行忍受着samba的延迟，每次保存都需要经过漫长的等待才能同步到docker上，这对于我们这种急性子程序猿简直要了老命。<strong>为了解决这个问题，我开发了一个脚本，分为发送端send.php和接收端recv.php。</strong>发送端部署在windows上，实时查询文件、文件夹的增删改操作。把操作的结果发送给接收端，docker接收端接收到后实时同步结果。<strong>从此解放双手，告别延迟</strong><br>
           
       
     </div>
@@ -324,77 +324,7 @@
 
       
         <p class="article-more-link">
-          <a   href="/2017/01/08/PHP/php数组及遍历/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-PHP/php数组的hash算法" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2016/12/01/PHP/php数组的hash算法/" class="article-date">
-      <time datetime="2016-11-30T16:00:00.000Z" itemprop="datePublished">2016-12-01</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2016/12/01/PHP/php数组的hash算法/">php数组的hash算法</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>php的数组是万能的，能够实现一切的常用的数据结构：vector、双向单向链表、map等都不在话下。我觉得php的核心就是数组，而我们知道php的数组是基于hash实现的，那么hash就是php的核心了。<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/PHP/">PHP</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2016/12/01/PHP/php数组的hash算法/#more">查看更多 >></a>
+          <a   href="/2017/01/08/PHP/仿smb实时同步脚本/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -465,6 +395,76 @@
       
         <p class="article-more-link">
           <a   href="/2016/12/01/PHP/php哈西处理冲突的方法/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-PHP/php数组的hash算法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2016/12/01/PHP/php数组的hash算法/" class="article-date">
+      <time datetime="2016-11-30T16:00:00.000Z" itemprop="datePublished">2016-12-01</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2016/12/01/PHP/php数组的hash算法/">php数组的hash算法</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>php的数组是万能的，能够实现一切的常用的数据结构：vector、双向单向链表、map等都不在话下。我觉得php的核心就是数组，而我们知道php的数组是基于hash实现的，那么hash就是php的核心了。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a   href="/2016/12/01/PHP/php数组的hash算法/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
