@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2018-04-01T16:47:45.683Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/04/01/PHP/php%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D3%E7%A7%8D%E6%96%B9%E5%BC%8F/</loc>
     
     <lastmod>2018-04-01T14:18:05.352Z</lastmod>
@@ -68,13 +75,6 @@
     <loc>http://yoursite.com/2018/04/01/MYSQL/InnoDB%E4%BA%8B%E5%8A%A1/</loc>
     
     <lastmod>2018-03-31T19:24:12.385Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/about/index.html</loc>
-    
-    <lastmod>2018-03-31T18:48:25.944Z</lastmod>
     
   </url>
   
